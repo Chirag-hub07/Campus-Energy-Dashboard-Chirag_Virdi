@@ -1,11 +1,14 @@
+# Campus Energy Use Dashboard
+# Created by-
+# Name- Chirag Virdi
+# Class- BTech CSE (DS)
+# Roll no- 2501420017
+# Date- 14/12/2025
+
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-
-# ------------------------------
-# TASK 1: DATA INGESTION
-# ------------------------------
 
 def load_all_data():
     data_folder = Path("data")
@@ -28,11 +31,7 @@ def load_all_data():
         return df_combined
     else:
         return pd.DataFrame()
-
-
-# ------------------------------
-# TASK 2: AGGREGATION FUNCTIONS
-# ------------------------------
+        
 
 def calculate_daily_totals(df):
     return df.resample('D', on='timestamp')['kwh'].sum()
@@ -43,10 +42,6 @@ def calculate_weekly_aggregates(df):
 def building_wise_summary(df):
     return df.groupby('Building')['kwh'].agg(['mean', 'min', 'max', 'sum'])
 
-
-# ------------------------------
-# TASK 3: OOP MODELING
-# ------------------------------
 
 class MeterReading:
     def __init__(self, timestamp, kwh):
@@ -74,10 +69,6 @@ class BuildingManager:
         self.buildings[building].add_reading(timestamp, kwh)
 
 
-# ------------------------------
-# TASK 4: VISUAL DASHBOARD
-# ------------------------------
-
 def create_dashboard(daily, weekly, df):
     fig, axs = plt.subplots(1, 3, figsize=(15, 5))
 
@@ -96,10 +87,6 @@ def create_dashboard(daily, weekly, df):
     plt.close()
 
 
-# ------------------------------
-# TASK 5: EXPORT + SUMMARY
-# ------------------------------
-
 def export_and_summary(df, summary_df):
     df.to_csv("cleaned_energy_data.csv", index=False)
     summary_df.to_csv("building_summary.csv")
@@ -113,10 +100,6 @@ def export_and_summary(df, summary_df):
         f.write(f"Highest Consuming Building: {highest_building}\n")
         f.write(f"Peak Load Time: {peak_time}\n")
 
-
-# ------------------------------
-# MAIN EXECUTION
-# ------------------------------
 
 def main():
     df = load_all_data()
@@ -137,3 +120,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
