@@ -1,0 +1,3 @@
+Total Campus Consumption: 3289
+Highest Consuming Building: hostel_block
+Peak Load Time: 2025-03-02 20:00:00
